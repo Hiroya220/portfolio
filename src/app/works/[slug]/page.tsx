@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { SiteFooter } from "@/components/layout/site-footer";
+import { SiteHeader } from "@/components/layout/site-header";
 import { ProjectVisual } from "@/components/projects/project-visual";
 import { Container } from "@/components/shared/container";
-import { Logo } from "@/components/shared/logo";
 import { mdxComponents } from "@/components/mdx-components";
 import { getAllProjects, getProject } from "@/lib/projects";
 
@@ -33,9 +33,9 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
 
   return (
     <>
-      <header className="bg-[#080808] py-6 text-white sm:py-8"><Container className="flex items-center justify-between"><Logo /><Link className="flex items-center gap-2 text-xs uppercase tracking-[0.16em] text-white/60 hover:text-white" href="/#work"><ArrowLeft className="size-4" />All work</Link></Container></header>
+      <SiteHeader />
       <main>
-        <section className="bg-[#080808] pb-16 pt-20 text-white sm:pb-24 sm:pt-32">
+        <section className="bg-[#080808] pb-16 pt-36 text-white sm:pb-24 sm:pt-44">
           <Container>
             <p className="mb-7 text-xs uppercase tracking-[0.2em] text-white/40">Selected work · {project.year}</p>
             <h1 className="text-[clamp(4.5rem,15vw,14rem)] font-medium leading-[0.8] tracking-[-0.075em]">{project.title}</h1>
@@ -60,4 +60,3 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
     </>
   );
 }
-

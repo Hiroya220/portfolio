@@ -1,6 +1,5 @@
 export const siteConfig = {
-  name: "Your Name",
-  initials: "YN",
+  name: "Hiroya KOHRITA",
   role: "Designer & Developer",
   description:
     "デザインとテクノロジーの間から、静かで記憶に残るデジタル体験をつくります。",
@@ -13,4 +12,3 @@ export const siteConfig = {
     linkedin: "https://www.linkedin.com/",
   },
 } as const;
-

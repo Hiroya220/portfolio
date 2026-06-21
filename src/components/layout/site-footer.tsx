@@ -19,10 +19,9 @@ export function SiteFooter() {
               <a className="link-line hover:text-white" href={href} target="_blank" rel="noreferrer" key={name}>{name}</a>
             ))}
           </div>
-          <div className="flex items-end justify-between sm:justify-end sm:gap-8"><span>© {new Date().getFullYear()}</span><Logo className="[&>span:last-child]:hidden" /></div>
+          <div className="flex items-end justify-between sm:justify-end sm:gap-8"><span>© {new Date().getFullYear()}</span><Logo className="[&_img]:invert" /></div>
         </div>
       </Container>
     </footer>
   );
 }
-
