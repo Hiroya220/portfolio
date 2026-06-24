@@ -1,27 +1,47 @@
-import { Container } from "@/components/shared/container";
+"use client";
+
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { primaryNavigation } from "@/content/navigation";
+import { cn } from "@/lib/utils";
 import { Logo } from "@/components/shared/logo";
 
-const links = [
-  { href: "/#work", label: "Work" },
-  { href: "/#about", label: "About" },
-  { href: "/#contact", label: "Contact" },
-];
+function isActive(pathname: string, href: string) {
+  if (href === "/works") return pathname === "/works" || pathname.startsWith("/works/");
+  return pathname === href;
+}
 
 export function SiteHeader() {
+  const pathname = usePathname();
+
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-black/10 bg-white py-4 text-black sm:py-5">
-      <Container className="flex items-center justify-between">
-        <Logo />
+    <header className="sticky top-0 z-50 h-12 bg-sky-panel text-black sm:h-14">
+      <div className="flex h-full items-center justify-between px-3 sm:px-5">
+        <Logo priority imageClassName="w-[146px] sm:w-[180px]" />
         <nav aria-label="Primary navigation">
-          <ul className="flex items-center gap-5 text-[11px] uppercase tracking-[0.16em] sm:gap-8 sm:text-xs">
-            {links.map((link) => (
-              <li key={link.href}>
-                <a className="link-line py-2 text-black/65 transition-colors hover:text-black" href={link.href}>{link.label}</a>
-              </li>
-            ))}
+          <ul className="flex items-center gap-5 text-base leading-none sm:gap-7 sm:text-lg">
+            {primaryNavigation.map((link) => {
+              const active = isActive(pathname, link.href);
+
+              return (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    aria-current={active ? "page" : undefined}
+                    className={cn(
+                      "rounded-sm px-1 py-2 transition-colors duration-300 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black",
+                      active ? "text-white" : "text-black",
+                    )}
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
         </nav>
-      </Container>
+      </div>
     </header>
   );
 }
+

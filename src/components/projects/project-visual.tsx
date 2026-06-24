@@ -1,4 +1,5 @@
 import Image from "next/image";
+import type { CSSProperties } from "react";
 import { cn } from "@/lib/utils";
 
 export function ProjectVisual({
@@ -21,7 +22,7 @@ export function ProjectVisual({
   }
 
   return (
-    <div className={cn("project-visual relative isolate h-full min-h-[340px] overflow-hidden", detail && "min-h-[55vw] lg:min-h-[760px]")} style={{ "--project-accent": accent } as React.CSSProperties}>
+    <div className={cn("project-visual relative isolate h-full min-h-full overflow-hidden", detail && "min-h-[55vw] lg:min-h-[760px]")} style={{ "--project-accent": accent } as CSSProperties}>
       <div className="absolute inset-0 bg-[linear-gradient(135deg,#171717,#0b0b0b)]" />
       <div className="absolute inset-0 opacity-30 [background-image:linear-gradient(rgba(255,255,255,.08)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.08)_1px,transparent_1px)] [background-size:48px_48px]" />
       {visual === "orb" && <div className="visual-orb absolute left-1/2 top-1/2 aspect-square w-[48%] -translate-x-1/2 -translate-y-1/2 rounded-full" />}
@@ -37,4 +38,3 @@ export function ProjectVisual({
     </div>
   );
 }
-

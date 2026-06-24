@@ -5,11 +5,13 @@ import { z } from "zod";
 import type { Project } from "@/types/project";
 
 const projectsDirectory = path.join(process.cwd(), "src/content/projects");
+const projectCategories = ["授業", "趣味", "研究"] as const;
 
 const projectSchema = z.object({
   title: z.string().min(1),
   description: z.string().min(1),
   year: z.coerce.string(),
+  category: z.enum(projectCategories).default("趣味"),
   role: z.array(z.string()).default([]),
   technologies: z.array(z.string()).default([]),
   featured: z.boolean().default(false),
@@ -51,7 +53,10 @@ export function getFeaturedProjects(): Project[] {
   return getAllProjects().filter((project) => project.featured);
 }
 
+export function getProjectCategories() {
+  return projectCategories;
+}
+
 export function getProject(slug: string): Project | undefined {
   return getAllProjects().find((project) => project.slug === slug);
 }
-

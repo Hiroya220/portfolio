@@ -7,7 +7,8 @@ export const mdxComponents = {
   p: (props: ComponentProps<"p">) => <p className="max-w-2xl text-base leading-8 text-black/60 sm:text-lg sm:leading-9" {...props} />,
   a: (props: ComponentProps<"a">) => <a className="underline underline-offset-4" {...props} />,
   ProjectVisual: ({ label, variant = "type" }: { label: string; variant?: "orb" | "grid" | "type" }) => (
-    <div className="my-20 aspect-[4/3] overflow-hidden bg-black sm:my-28 sm:aspect-[16/9]"><ProjectVisual label={label} visual={variant} accent="#d8ff56" /></div>
+    <div className="my-16 aspect-[4/3] overflow-hidden border border-black/10 bg-black sm:my-24 sm:aspect-[16/9]">
+      <ProjectVisual label={label} visual={variant} accent="#C5E3FF" />
+    </div>
   ),
 };
-

@@ -1,8 +1,11 @@
+export type ProjectCategory = "授業" | "趣味" | "研究";
+
 export type Project = {
   slug: string;
   title: string;
   description: string;
   year: string;
+  category: ProjectCategory;
   role: string[];
   technologies: string[];
   featured: boolean;

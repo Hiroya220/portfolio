@@ -1,0 +1,56 @@
+import type { Metadata } from "next";
+import { SiteHeader } from "@/components/layout/site-header";
+import { OptionalImage } from "@/components/shared/optional-image";
+import { ProfileDetailAccordion } from "@/components/profile/profile-detail-accordion";
+import { assetPaths } from "@/content/assets";
+import { profileContent } from "@/content/profile";
+import { siteConfig } from "@/content/site-config";
+
+export const metadata: Metadata = {
+  title: "Profile",
+  description: `${siteConfig.displayName} のプロフィールです。`,
+};
+
+export default function ProfilePage() {
+  return (
+    <>
+      <SiteHeader />
+      <main className="min-h-[calc(100dvh-3rem)] bg-white text-black sm:min-h-[calc(100dvh-3.5rem)]">
+        <section className="mx-auto w-full max-w-[1180px] px-5 pb-16 pt-4 sm:px-8 sm:pb-24">
+          <h1 className="text-[clamp(4.5rem,14vw,10rem)] font-normal leading-[0.86] tracking-[-0.08em]">
+            {profileContent.title}
+          </h1>
+
+          <div className="mt-10 grid items-start gap-10 lg:grid-cols-[1fr_400px] lg:gap-16">
+            <div>
+              <p className="text-2xl leading-tight tracking-[0.08em] sm:text-3xl">{profileContent.nameLine}</p>
+              <div className="mt-6 grid max-w-2xl gap-3 text-lg leading-relaxed sm:text-xl">
+                {profileContent.body.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
+              </div>
+            </div>
+
+            <OptionalImage
+              src={assetPaths.profilePhoto}
+              alt="郡田寛也の宣材写真"
+              width={800}
+              height={800}
+              priority
+              className="aspect-square w-full rounded-md"
+              imageClassName="object-cover"
+              fallbackLabel="public/images/宣材写真.png を置くと写真が表示されます"
+            />
+          </div>
+
+          <ProfileDetailAccordion
+            openLabel={profileContent.accordionTitle}
+            closeLabel={profileContent.accordionCloseTitle}
+            items={profileContent.details}
+          />
+        </section>
+      </main>
+    </>
+  );
+}
+

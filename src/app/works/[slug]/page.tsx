@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { MDXRemote } from "next-mdx-remote/rsc";
-import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
 import { ProjectVisual } from "@/components/projects/project-visual";
 import { Container } from "@/components/shared/container";
@@ -27,6 +26,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
   const { slug } = await params;
   const project = getProject(slug);
   if (!project) notFound();
+
   const projects = getAllProjects();
   const currentIndex = projects.findIndex((item) => item.slug === slug);
   const nextProject = projects[(currentIndex + 1) % projects.length];
@@ -34,29 +34,83 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
   return (
     <>
       <SiteHeader />
-      <main>
-        <section className="bg-[#080808] pb-16 pt-36 text-white sm:pb-24 sm:pt-44">
+      <main className="bg-white text-black">
+        <section className="pb-12 pt-8 sm:pb-16 sm:pt-14">
           <Container>
-            <p className="mb-7 text-xs uppercase tracking-[0.2em] text-white/40">Selected work · {project.year}</p>
-            <h1 className="text-[clamp(4.5rem,15vw,14rem)] font-medium leading-[0.8] tracking-[-0.075em]">{project.title}</h1>
-            <div className="mt-16 grid gap-10 border-t border-white/15 pt-7 text-sm sm:grid-cols-3 sm:mt-24">
-              <div><p className="mb-2 text-xs uppercase tracking-[0.16em] text-white/35">Client</p><p>{project.client ?? "Independent"}</p></div>
-              <div><p className="mb-2 text-xs uppercase tracking-[0.16em] text-white/35">Role</p><p>{project.role.join(", ")}</p></div>
-              <div><p className="mb-2 text-xs uppercase tracking-[0.16em] text-white/35">Technology</p><p>{project.technologies.join(", ")}</p></div>
+            <Link href="/works" className="mb-10 inline-flex items-center gap-2 text-sm text-black/60 transition-colors hover:text-black">
+              <ArrowLeft className="size-4" />
+              Worksへ戻る
+            </Link>
+
+            <div className="grid gap-10 lg:grid-cols-[1fr_420px] lg:items-end">
+              <div>
+                <p className="mb-5 text-sm tracking-[0.2em] text-black/45">
+                  {project.category} / {project.year}
+                </p>
+                <h1 className="text-[clamp(4rem,13vw,12rem)] font-normal leading-[0.8] tracking-[-0.09em]">
+                  {project.title}
+                </h1>
+              </div>
+              <p className="text-lg leading-relaxed text-black/70 sm:text-xl">{project.description}</p>
+            </div>
+
+            <div className="mt-12 grid gap-4 border-y border-black/20 py-5 text-sm sm:grid-cols-3 sm:text-base">
+              <div>
+                <p className="mb-1 text-black/40">Client</p>
+                <p>{project.client ?? "Independent"}</p>
+              </div>
+              <div>
+                <p className="mb-1 text-black/40">Role</p>
+                <p>{project.role.join(", ")}</p>
+              </div>
+              <div>
+                <p className="mb-1 text-black/40">Technology</p>
+                <p>{project.technologies.join(", ")}</p>
+              </div>
             </div>
           </Container>
         </section>
-        <section className="bg-[#eeeDE8] pb-24 text-[#111] sm:pb-40">
-          <div className="relative aspect-[4/3] w-full overflow-hidden bg-black sm:aspect-[16/9]"><ProjectVisual title={project.title} accent={project.accent} visual={project.visual} cover={project.cover} detail /></div>
-          <Container className="pt-16 sm:pt-28">
-            <p className="max-w-4xl text-[clamp(1.8rem,4vw,4.5rem)] font-medium leading-[1.08] tracking-[-0.045em]">{project.description}</p>
-            <article><MDXRemote source={project.content} components={mdxComponents} /></article>
-            {(project.siteUrl || project.githubUrl) && <div className="mt-20 flex gap-5">{project.siteUrl && <a href={project.siteUrl} target="_blank" rel="noreferrer" className="flex items-center gap-2 border-b border-black pb-1">Visit website <ArrowUpRight className="size-4" /></a>}{project.githubUrl && <a href={project.githubUrl} target="_blank" rel="noreferrer" className="flex items-center gap-2 border-b border-black pb-1">View code <ArrowUpRight className="size-4" /></a>}</div>}
-          </Container>
+
+        <section className="border-y border-black/10 bg-sky-panel/30">
+          <div className="relative aspect-[4/3] w-full overflow-hidden sm:aspect-[16/9]">
+            <ProjectVisual title={project.title} accent={project.accent} visual={project.visual} cover={project.cover} detail />
+          </div>
         </section>
-        {nextProject && <Link href={`/works/${nextProject.slug}`} className="group block bg-[#151515] py-24 text-white sm:py-40"><Container><p className="mb-8 text-xs uppercase tracking-[0.2em] text-white/35">Next project</p><div className="flex items-end justify-between"><span className="text-[clamp(3.5rem,11vw,11rem)] font-medium leading-[.85] tracking-[-0.065em]">{nextProject.title}</span><ArrowUpRight className="size-9 transition-transform duration-500 group-hover:-translate-y-2 group-hover:translate-x-2 sm:size-16" strokeWidth={1} /></div></Container></Link>}
+
+        <Container className="pb-20 pt-14 sm:pb-28 sm:pt-20">
+          <article className="project-article">
+            <MDXRemote source={project.content} components={mdxComponents} />
+          </article>
+
+          {(project.siteUrl || project.githubUrl) && (
+            <div className="mt-16 flex flex-wrap gap-5">
+              {project.siteUrl && (
+                <a href={project.siteUrl} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 border-b border-black pb-1">
+                  Visit website <ArrowUpRight className="size-4" />
+                </a>
+              )}
+              {project.githubUrl && (
+                <a href={project.githubUrl} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 border-b border-black pb-1">
+                  View code <ArrowUpRight className="size-4" />
+                </a>
+              )}
+            </div>
+          )}
+        </Container>
+
+        {nextProject && (
+          <Link href={`/works/${nextProject.slug}`} className="group block border-t border-black/15 bg-white py-16 transition-colors hover:bg-sky-panel/45 sm:py-24">
+            <Container>
+              <p className="mb-8 text-sm tracking-[0.2em] text-black/45">Next project</p>
+              <div className="flex items-end justify-between gap-6">
+                <span className="text-[clamp(3.5rem,10vw,9rem)] leading-[0.85] tracking-[-0.08em]">{nextProject.title}</span>
+                <ArrowUpRight className="size-9 shrink-0 transition-transform duration-500 group-hover:-translate-y-2 group-hover:translate-x-2 sm:size-14" strokeWidth={1.2} />
+              </div>
+            </Container>
+          </Link>
+        )}
       </main>
-      <SiteFooter />
     </>
   );
 }
+

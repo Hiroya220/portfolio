@@ -1,14 +1,15 @@
 export const siteConfig = {
-  name: "Hiroya KOHRITA",
-  role: "Designer & Developer",
-  description:
-    "デザインとテクノロジーの間から、静かで記憶に残るデジタル体験をつくります。",
-  location: "Tokyo, Japan",
-  availability: "Available for selected projects",
+  name: "Hiroya Kohrita",
+  displayName: "Hiroya KOHRITA",
+  initials: "HK",
+  role: "Designer / Student",
+  description: "Hiroya Kohrita のプロフィール、制作物、お問い合わせをまとめたポートフォリオサイトです。",
+  location: "Kanagawa, Japan",
+  availability: "Open to conversations",
   email: "hello@example.com",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
-  socialLinks: {
-    github: "https://github.com/",
-    linkedin: "https://www.linkedin.com/",
-  },
+  socials: [
+    { label: "X", href: "https://x.com/Hiroya220" },
+  ],
 } as const;
+

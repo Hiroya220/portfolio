@@ -1,22 +1,21 @@
 export const homeContent = {
   hero: {
-    eyebrow: "Independent designer & developer — Tokyo",
-    lines: ["Designing", "digital", "experiences."],
-    introduction:
-      "構造を整え、余白をつくり、使う人の記憶に残るウェブ体験へ。デザインから実装まで一貫して手がけています。",
+    eyebrow: "Hiroya Kohrita / Portfolio",
+    lines: ["Profile", "Works", "Contact"],
+    introduction: "白背景と水色のナビゲーションを基調にしたポートフォリオサイトです。",
   },
   about: {
     label: "About",
-    heading: "複雑なものを、\n自然に使えるかたちへ。",
+    heading: "あとから編集しやすい構成で、プロフィールと制作物を整理します。",
     body: [
-      "東京を拠点に、ブランドサイトやプロダクトのデザインとフロントエンド開発に取り組んでいます。見た目の美しさだけでなく、情報が正しく伝わる構造と、触れたときの心地よさを大切にしています。",
-      "小さな違和感を見逃さず、アイデアから公開後の改善まで、同じ温度で向き合います。",
+      "ページの文章は src/content 配下で管理します。",
+      "制作物は src/content/projects に MDX ファイルを追加するだけで増やせます。",
     ],
   },
   capabilities: [
-    { number: "01", title: "Direction", items: ["Concept", "Art direction", "Strategy"] },
-    { number: "02", title: "Design", items: ["Web design", "UI / UX", "Design systems"] },
-    { number: "03", title: "Development", items: ["Frontend", "Creative coding", "Prototyping"] },
+    { number: "01", title: "Profile", items: ["Biography", "Details"] },
+    { number: "02", title: "Works", items: ["授業", "趣味", "研究"] },
+    { number: "03", title: "Contact", items: ["X DM", "Google Forms"] },
   ],
 } as const;
 
