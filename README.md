@@ -22,7 +22,7 @@ npm run dev
 
 現在の参照先は以下です。
 
-- ロゴ: `public/logo/hiroya-kohrita.png`
+- ロゴ: `public/logo/Hiroya KOHRITAロゴ.png`
 - 宣材写真: `public/images/宣材写真.png`
 - ひろやうさぎ: `public/images/ひろやうさぎ透過素材.png`
 
@@ -72,4 +72,3 @@ visual: "type"
 ## Vercel
 
 Vercelでは標準設定でデプロイできます。本番URLが決まったら、環境変数 `NEXT_PUBLIC_SITE_URL` に公開URLを設定してください。
-
