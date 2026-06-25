@@ -17,7 +17,7 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 h-12 bg-sky-panel text-black sm:h-14">
       <div className="flex h-full items-center justify-between px-3 sm:px-5">
-        <Logo priority imageClassName="w-[146px] sm:w-[180px]" />
+        <Logo priority imageClassName="w-[190px] sm:w-[238px]" />
         <nav aria-label="Primary navigation">
           <ul className="flex items-center gap-5 text-base leading-none sm:gap-7 sm:text-lg">
             {primaryNavigation.map((link) => {
@@ -29,7 +29,7 @@ export function SiteHeader() {
                     href={link.href}
                     aria-current={active ? "page" : undefined}
                     className={cn(
-                      "rounded-sm px-1 py-2 transition-colors duration-300 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black",
+                      "header-nav-link rounded-sm px-1 py-2 transition-colors duration-300 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black",
                       active ? "text-white" : "text-black",
                     )}
                   >
@@ -44,4 +44,3 @@ export function SiteHeader() {
     </header>
   );
 }
-

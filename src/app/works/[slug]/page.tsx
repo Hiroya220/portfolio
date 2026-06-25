@@ -34,7 +34,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
   return (
     <>
       <SiteHeader />
-      <main className="bg-white text-black">
+      <main className="page-enter bg-white text-black">
         <section className="pb-12 pt-8 sm:pb-16 sm:pt-14">
           <Container>
             <Link href="/works" className="mb-10 inline-flex items-center gap-2 text-sm text-black/60 transition-colors hover:text-black">
@@ -47,11 +47,11 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                 <p className="mb-5 text-sm tracking-[0.2em] text-black/45">
                   {project.category} / {project.year}
                 </p>
-                <h1 className="text-[clamp(4rem,13vw,12rem)] font-normal leading-[0.8] tracking-[-0.09em]">
+                <h1 className="text-[clamp(3rem,9vw,8rem)] font-normal leading-[0.88] tracking-[-0.045em]">
                   {project.title}
                 </h1>
               </div>
-              <p className="text-lg leading-relaxed text-black/70 sm:text-xl">{project.description}</p>
+              <p className="text-base leading-relaxed text-black/70 sm:text-lg">{project.description}</p>
             </div>
 
             <div className="mt-12 grid gap-4 border-y border-black/20 py-5 text-sm sm:grid-cols-3 sm:text-base">
@@ -103,7 +103,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
             <Container>
               <p className="mb-8 text-sm tracking-[0.2em] text-black/45">Next project</p>
               <div className="flex items-end justify-between gap-6">
-                <span className="text-[clamp(3.5rem,10vw,9rem)] leading-[0.85] tracking-[-0.08em]">{nextProject.title}</span>
+                <span className="text-[clamp(2.8rem,8vw,7rem)] leading-[0.9] tracking-[-0.045em]">{nextProject.title}</span>
                 <ArrowUpRight className="size-9 shrink-0 transition-transform duration-500 group-hover:-translate-y-2 group-hover:translate-x-2 sm:size-14" strokeWidth={1.2} />
               </div>
             </Container>
@@ -113,4 +113,3 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
     </>
   );
 }
-

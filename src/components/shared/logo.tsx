@@ -13,14 +13,16 @@ type LogoProps = {
 
 export function Logo({ className, imageClassName, priority = false, linked = true }: LogoProps) {
   const image = (
-    <Image
-      src={assetPaths.logo}
-      alt={`${siteConfig.displayName} logo`}
-      width={1304}
-      height={248}
-      priority={priority}
-      className={cn("h-auto w-[150px] select-none sm:w-[184px]", imageClassName)}
-    />
+    <span className={cn("relative block aspect-[1304/248] w-[190px] overflow-hidden", imageClassName)}>
+      <Image
+        src={assetPaths.logo}
+        alt={`${siteConfig.displayName} logo`}
+        fill
+        sizes="(max-width: 640px) 230px, 520px"
+        priority={priority}
+        className="select-none object-cover object-center"
+      />
+    </span>
   );
 
   if (!linked) {
@@ -33,4 +35,3 @@ export function Logo({ className, imageClassName, priority = false, linked = tru
     </Link>
   );
 }
-

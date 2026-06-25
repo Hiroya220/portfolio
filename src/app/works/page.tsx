@@ -16,10 +16,10 @@ export default function WorksPage() {
   return (
     <>
       <SiteHeader />
-      <main className="min-h-[calc(100dvh-3rem)] bg-white text-black sm:min-h-[calc(100dvh-3.5rem)]">
+      <main className="page-enter min-h-[calc(100dvh-3rem)] bg-white text-black sm:min-h-[calc(100dvh-3.5rem)]">
         <section className="mx-auto w-full max-w-[1440px] px-5 pb-20 pt-4 sm:px-8 sm:pb-28">
           <div className="grid gap-6 border-b border-black/20 pb-8 lg:grid-cols-[1fr_420px] lg:items-end">
-            <h1 className="text-[clamp(4.5rem,14vw,13rem)] font-normal leading-[0.78] tracking-[-0.09em]">
+            <h1 className="text-[clamp(3.4rem,10vw,8rem)] font-normal leading-[0.86] tracking-[-0.04em]">
               Works
             </h1>
             <p className="max-w-md text-base leading-relaxed text-black/65 sm:text-lg">
@@ -32,4 +32,3 @@ export default function WorksPage() {
     </>
   );
 }
-

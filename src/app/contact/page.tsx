@@ -13,9 +13,9 @@ export default function ContactPage() {
   return (
     <>
       <SiteHeader />
-      <main className="min-h-[calc(100dvh-3rem)] bg-white text-black sm:min-h-[calc(100dvh-3.5rem)]">
+      <main className="page-enter min-h-[calc(100dvh-3rem)] bg-white text-black sm:min-h-[calc(100dvh-3.5rem)]">
         <section className="mx-auto w-full max-w-[980px] px-5 pb-16 pt-4 sm:px-8 sm:pb-24">
-          <h1 className="text-[clamp(4.5rem,14vw,10rem)] font-normal leading-[0.86] tracking-[-0.08em]">
+          <h1 className="text-[clamp(3.4rem,9vw,7rem)] font-normal leading-[0.92] tracking-[-0.035em]">
             {contactContent.title}
           </h1>
           <ContactActions />
@@ -24,4 +24,3 @@ export default function ContactPage() {
     </>
   );
 }
-

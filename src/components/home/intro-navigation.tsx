@@ -6,7 +6,7 @@ export function IntroNavigation() {
   return (
     <main className="top-stage min-h-dvh overflow-hidden bg-white text-black">
       <div className="top-logo" aria-hidden="true">
-        <Logo linked={false} priority imageClassName="w-[240px] sm:w-[300px] lg:w-[360px]" />
+        <Logo linked={false} priority imageClassName="w-[300px] sm:w-[400px] lg:w-[480px]" />
       </div>
 
       <nav className="top-panel" aria-label="Top navigation">
@@ -19,4 +19,3 @@ export function IntroNavigation() {
     </main>
   );
 }
-

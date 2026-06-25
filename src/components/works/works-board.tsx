@@ -48,12 +48,12 @@ export function WorksBoard({ projects, categories }: WorksBoardProps) {
               <ProjectVisual title={project.title} accent={project.accent} visual={project.visual} cover={project.cover} />
             </div>
             <div className="p-5 sm:p-6">
-              <div className="mb-8 flex items-center justify-between text-sm text-black/55">
+              <div className="mb-7 flex items-center justify-between text-xs tracking-[0.08em] text-black/55 sm:text-sm">
                 <span>{String(index + 1).padStart(2, "0")}</span>
                 <span>{project.category}</span>
               </div>
-              <h2 className="text-3xl leading-none tracking-[-0.05em] sm:text-4xl">{project.title}</h2>
-              <p className="mt-4 min-h-16 text-sm leading-relaxed text-black/65 sm:text-base">{project.description}</p>
+              <h2 className="text-2xl leading-tight tracking-[-0.02em] sm:text-3xl">{project.title}</h2>
+              <p className="mt-4 min-h-16 text-sm leading-relaxed text-black/65">{project.description}</p>
               <div className="mt-7 flex items-center justify-between border-t border-black/15 pt-4 text-sm">
                 <span>{project.year}</span>
                 <ArrowUpRight className="size-5 transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1" strokeWidth={1.5} />
@@ -65,4 +65,3 @@ export function WorksBoard({ projects, categories }: WorksBoardProps) {
     </div>
   );
 }
-
