@@ -21,7 +21,7 @@ export default function ProfilePage() {
             {profileContent.title}
           </h1>
 
-          <div className="mt-10 grid items-start gap-10 lg:grid-cols-[1fr_400px] lg:gap-16">
+          <div className="mt-8 grid items-start gap-8 sm:mt-10 lg:grid-cols-[1fr_400px] lg:gap-16">
             <div>
               <p className="text-xl leading-tight tracking-[0.1em] sm:text-2xl">{profileContent.nameLine}</p>
               <div className="mt-6 grid max-w-2xl gap-3 text-base leading-relaxed sm:text-lg">
@@ -37,7 +37,7 @@ export default function ProfilePage() {
               width={800}
               height={800}
               priority
-              className="aspect-square w-full rounded-md"
+              className="order-first aspect-square w-full rounded-md lg:order-none"
               imageClassName="object-cover"
               fallbackLabel="public/images/宣材写真.png を置くと写真が表示されます"
             />
