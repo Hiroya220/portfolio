@@ -65,6 +65,10 @@ a {
 
 .top-stage {
   position: relative;
+  --intro-logo-fade: 0.45s;
+  --intro-delay: 2s;
+  --intro-move: 0.9s;
+  --intro-start: calc(var(--intro-logo-fade) + var(--intro-delay));
 }
 
 .top-logo {
@@ -72,8 +76,11 @@ a {
   left: 50%;
   top: 50%;
   z-index: 2;
+  opacity: 0;
   transform: translate(-50%, -50%);
-  animation: top-logo-enter 1.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation:
+    top-logo-fade var(--intro-logo-fade) cubic-bezier(0.22, 1, 0.36, 1) both,
+    top-logo-move var(--intro-move) cubic-bezier(0.22, 1, 0.36, 1) var(--intro-start) forwards;
 }
 
 .top-panel {
@@ -85,7 +92,7 @@ a {
   grid-template-rows: repeat(3, minmax(0, 1fr));
   background: var(--sky-panel);
   transform: translateX(100%);
-  animation: top-panel-enter 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.5s forwards;
+  animation: top-panel-enter var(--intro-move) cubic-bezier(0.22, 1, 0.36, 1) var(--intro-start) forwards;
 }
 
 .top-panel-link {
@@ -107,28 +114,26 @@ a {
   outline: none;
 }
 
-@keyframes top-logo-enter {
-  0% {
-    left: 50%;
+@keyframes top-logo-fade {
+  from {
     opacity: 0;
     transform: translate(-50%, -50%) scale(0.985);
   }
 
-  24% {
-    left: 50%;
+  to {
     opacity: 1;
     transform: translate(-50%, -50%) scale(1);
   }
+}
 
-  42% {
+@keyframes top-logo-move {
+  from {
     left: 50%;
-    opacity: 1;
     transform: translate(-50%, -50%) scale(1);
   }
 
-  100% {
+  to {
     left: 25%;
-    opacity: 1;
     transform: translate(-50%, -50%) scale(1);
   }
 }
@@ -182,7 +187,9 @@ a {
 
 @media (max-width: 767px) {
   .top-logo {
-    animation-name: top-logo-enter-mobile;
+    animation:
+      top-logo-fade var(--intro-logo-fade) cubic-bezier(0.22, 1, 0.36, 1) both,
+      top-logo-move-mobile var(--intro-move) cubic-bezier(0.22, 1, 0.36, 1) var(--intro-start) forwards;
   }
 
   .top-panel {
@@ -191,36 +198,20 @@ a {
     width: 100%;
     height: 55%;
     transform: translateY(100%);
-    animation-name: top-panel-enter-mobile;
+    animation: top-panel-enter-mobile var(--intro-move) cubic-bezier(0.22, 1, 0.36, 1) var(--intro-start) forwards;
   }
 }
 
-@keyframes top-logo-enter-mobile {
-  0% {
+@keyframes top-logo-move-mobile {
+  from {
     left: 50%;
     top: 50%;
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(0.985);
-  }
-
-  24% {
-    left: 50%;
-    top: 50%;
-    opacity: 1;
     transform: translate(-50%, -50%) scale(1);
   }
 
-  42% {
-    left: 50%;
-    top: 50%;
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
-  }
-
-  100% {
+  to {
     left: 50%;
     top: 22.5%;
-    opacity: 1;
     transform: translate(-50%, -50%) scale(1);
   }
 }
@@ -245,4 +236,3 @@ a {
     transition-duration: 0.01ms !important;
   }
 }
-
