@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Noto_Sans_JP, Plus_Jakarta_Sans } from "next/font/google";
 import { SmoothScroll } from "@/components/motion/smooth-scroll";
+import { WalkingRabbit } from "@/components/shared/walking-rabbit";
 import { siteConfig } from "@/content/site-config";
 import "./globals.css";
 
@@ -46,6 +47,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body>
         <SmoothScroll />
         {children}
+        <WalkingRabbit />
       </body>
     </html>
   );

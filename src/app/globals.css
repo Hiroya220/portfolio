@@ -31,6 +31,12 @@
   --border: rgba(0, 0, 0, 0.18);
   --ring: rgba(0, 0, 0, 0.6);
   --sky-panel: #c5e3ff;
+  --intro-logo-fade: 0.75s;
+  --intro-delay: 1s;
+  --intro-move: 0.9s;
+  --intro-ease: cubic-bezier(0.65, 0, 0.35, 1);
+  --intro-start: calc(var(--intro-logo-fade) + var(--intro-delay));
+  --mobile-top-panel-height: 60dvh;
 }
 
 * {
@@ -68,11 +74,6 @@ a {
 
 .top-stage {
   position: relative;
-  --intro-logo-fade: 0.75s;
-  --intro-delay: 1s;
-  --intro-move: 0.9s;
-  --intro-ease: cubic-bezier(0.65, 0, 0.35, 1);
-  --intro-start: calc(var(--intro-logo-fade) + var(--intro-delay));
 }
 
 .top-logo {
@@ -153,6 +154,33 @@ a {
   animation: page-enter 0.95s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
+.walking-rabbit {
+  position: fixed;
+  bottom: clamp(0.75rem, 2vw, 1.5rem);
+  left: clamp(0.75rem, 2vw, 1.5rem);
+  z-index: 40;
+  width: clamp(5.25rem, 7vw, 6.75rem);
+  aspect-ratio: 1;
+  pointer-events: none;
+  user-select: none;
+}
+
+.walking-rabbit-frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.walking-rabbit-frame-open {
+  animation: walking-rabbit-open 0.5s steps(1, end) infinite;
+}
+
+.walking-rabbit-frame-closed {
+  animation: walking-rabbit-closed 0.5s steps(1, end) infinite;
+}
+
 @keyframes top-logo-fade {
   from {
     filter: blur(8px);
@@ -194,6 +222,30 @@ a {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes walking-rabbit-open {
+  0%,
+  49.999% {
+    opacity: 1;
+  }
+
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes walking-rabbit-closed {
+  0%,
+  49.999% {
+    opacity: 0;
+  }
+
+  50%,
+  100% {
+    opacity: 1;
   }
 }
 
@@ -250,9 +302,23 @@ a {
     inset-block: auto 0;
     left: 0;
     width: 100%;
-    height: 55%;
+    height: var(--mobile-top-panel-height);
     transform: translateY(100%);
     animation: top-panel-enter-mobile var(--intro-move) var(--intro-ease) var(--intro-start) forwards;
+  }
+
+  .walking-rabbit {
+    bottom: 0;
+    left: 0.75rem;
+    width: clamp(4.5rem, 18vw, 5.25rem);
+  }
+
+  body:not(:has(.top-stage)) .walking-rabbit {
+    bottom: 0.75rem;
+  }
+
+  body:has(.top-stage) .walking-rabbit {
+    animation: walking-rabbit-panel-enter var(--intro-move) var(--intro-ease) var(--intro-start) forwards;
   }
 }
 
@@ -265,7 +331,7 @@ a {
 
   to {
     left: 50%;
-    top: 22.5%;
+    top: calc((100dvh - var(--mobile-top-panel-height)) / 2);
     transform: translate(-50%, -50%) scale(1);
   }
 }
@@ -273,6 +339,16 @@ a {
 @keyframes top-panel-enter-mobile {
   to {
     transform: translateY(0);
+  }
+}
+
+@keyframes walking-rabbit-panel-enter {
+  from {
+    bottom: 0;
+  }
+
+  to {
+    bottom: var(--mobile-top-panel-height);
   }
 }
 
@@ -288,5 +364,13 @@ a {
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
+  }
+
+  .walking-rabbit-frame-open {
+    opacity: 1;
+  }
+
+  .walking-rabbit-frame-closed {
+    opacity: 0;
   }
 }
