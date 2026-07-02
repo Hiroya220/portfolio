@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { primaryNavigation } from "@/content/navigation";
 import { Logo } from "@/components/shared/logo";
+import { WalkingRabbit } from "@/components/shared/walking-rabbit";
 
 export function IntroNavigation() {
   return (
@@ -16,6 +17,8 @@ export function IntroNavigation() {
           </Link>
         ))}
       </nav>
+
+      <WalkingRabbit className="walking-rabbit-home" />
     </main>
   );
 }

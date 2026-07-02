@@ -47,7 +47,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body>
         <SmoothScroll />
         {children}
-        <WalkingRabbit />
+        <WalkingRabbit className="walking-rabbit-global" />
       </body>
     </html>
   );

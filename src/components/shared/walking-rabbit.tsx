@@ -1,9 +1,14 @@
 import Image from "next/image";
 import { assetPaths } from "@/content/assets";
+import { cn } from "@/lib/utils";
 
-export function WalkingRabbit() {
+type WalkingRabbitProps = {
+  className?: string;
+};
+
+export function WalkingRabbit({ className }: WalkingRabbitProps) {
   return (
-    <div className="walking-rabbit" aria-hidden="true">
+    <div className={cn("walking-rabbit", className)} aria-hidden="true">
       <Image
         src={assetPaths.walkingRabbitOpen}
         alt=""

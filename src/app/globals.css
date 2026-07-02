@@ -36,7 +36,10 @@
   --intro-move: 0.9s;
   --intro-ease: cubic-bezier(0.65, 0, 0.35, 1);
   --intro-start: calc(var(--intro-logo-fade) + var(--intro-delay));
-  --mobile-top-panel-height: 60dvh;
+  --rabbit-fade: 0.55s;
+  --rabbit-reveal-start: calc(var(--intro-start) + var(--intro-move));
+  --rabbit-walk-start: calc(var(--rabbit-reveal-start) + var(--rabbit-fade));
+  --mobile-top-panel-height: 75%;
 }
 
 * {
@@ -165,6 +168,18 @@ a {
   user-select: none;
 }
 
+.walking-rabbit-home {
+  position: absolute;
+  bottom: 0.25rem;
+  left: 0.25rem;
+  opacity: 0;
+  animation: walking-rabbit-reveal var(--rabbit-fade) cubic-bezier(0.22, 1, 0.36, 1) var(--rabbit-reveal-start) forwards;
+}
+
+body:has(.top-stage) > .walking-rabbit-global {
+  display: none;
+}
+
 .walking-rabbit-frame {
   position: absolute;
   inset: 0;
@@ -174,11 +189,18 @@ a {
 }
 
 .walking-rabbit-frame-open {
+  opacity: 1;
   animation: walking-rabbit-open 0.5s steps(1, end) infinite;
 }
 
 .walking-rabbit-frame-closed {
+  opacity: 0;
   animation: walking-rabbit-closed 0.5s steps(1, end) infinite;
+}
+
+.walking-rabbit-home .walking-rabbit-frame-open,
+.walking-rabbit-home .walking-rabbit-frame-closed {
+  animation-delay: var(--rabbit-walk-start);
 }
 
 @keyframes top-logo-fade {
@@ -217,6 +239,18 @@ a {
   from {
     opacity: 0;
     transform: translateY(14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes walking-rabbit-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
   }
 
   to {
@@ -308,17 +342,16 @@ a {
   }
 
   .walking-rabbit {
-    bottom: 0;
-    left: 0.75rem;
+    left: 0.25rem;
     width: clamp(4.5rem, 18vw, 5.25rem);
   }
 
-  body:not(:has(.top-stage)) .walking-rabbit {
+  .walking-rabbit-global {
     bottom: 0.75rem;
   }
 
-  body:has(.top-stage) .walking-rabbit {
-    animation: walking-rabbit-panel-enter var(--intro-move) var(--intro-ease) var(--intro-start) forwards;
+  .walking-rabbit-home {
+    bottom: var(--mobile-top-panel-height);
   }
 }
 
@@ -331,7 +364,7 @@ a {
 
   to {
     left: 50%;
-    top: calc((100dvh - var(--mobile-top-panel-height)) / 2);
+    top: calc((100% - var(--mobile-top-panel-height)) / 2);
     transform: translate(-50%, -50%) scale(1);
   }
 }
@@ -339,16 +372,6 @@ a {
 @keyframes top-panel-enter-mobile {
   to {
     transform: translateY(0);
-  }
-}
-
-@keyframes walking-rabbit-panel-enter {
-  from {
-    bottom: 0;
-  }
-
-  to {
-    bottom: var(--mobile-top-panel-height);
   }
 }
 
